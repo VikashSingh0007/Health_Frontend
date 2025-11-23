@@ -1,0 +1,33 @@
+# Flutter build artifacts
+build/
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Android/iOS (not needed for web)
+android/
+ios/
+linux/
+macos/
+windows/
+
+# Test files
+test/
+
+# Documentation
+*.md
+!README.md
+
