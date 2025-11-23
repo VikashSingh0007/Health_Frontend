@@ -81,10 +81,10 @@ return 'https://your-backend-url.onrender.com';
 
 3. **Configure Project:**
    - **Framework Preset:** Other
-   - **Root Directory:** `frontend`
-   - **Build Command:** `flutter build web --release`
+   - **Root Directory:** `frontend` (if deploying from root, leave empty)
+   - **Build Command:** `bash build.sh` (or leave empty to use vercel.json)
    - **Output Directory:** `build/web`
-   - **Install Command:** (leave empty, Vercel will auto-detect)
+   - **Install Command:** (leave empty, handled in build script)
 
 4. **Environment Variables (if needed):**
    - Usually not needed for Flutter web, but if you have any, add them here
@@ -141,7 +141,35 @@ The app automatically detects if it's running on Vercel:
 
 ## Troubleshooting
 
-### Build Fails
+### Build Fails - "flutter: command not found"
+
+This means Flutter is not installed on Vercel. The `build.sh` script will automatically install Flutter, but if it still fails:
+
+1. **Check build.sh is executable:**
+   ```bash
+   chmod +x build.sh
+   git add build.sh
+   git commit -m "Make build.sh executable"
+   git push
+   ```
+
+2. **Verify build script:**
+   - Make sure `build.sh` is in the root of your frontend directory
+   - Check that it has execute permissions
+
+3. **Alternative: Use Vercel Build Settings:**
+   - In Vercel dashboard → Project Settings → Build & Development Settings
+   - Override Build Command: `bash build.sh`
+   - Override Output Directory: `build/web`
+
+### Build Timeout
+
+If build times out (usually > 5 minutes):
+1. Flutter installation takes time - first build will be slower
+2. Subsequent builds will be faster (cached)
+3. Consider using a faster Flutter installation method
+
+### Build Fails - Other Issues
 
 1. **Check Flutter version:**
    ```bash

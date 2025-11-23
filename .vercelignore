@@ -27,7 +27,10 @@ windows/
 # Test files
 test/
 
-# Documentation
+# Documentation (keep README)
 *.md
 !README.md
 
+# Git
+.git/
+.gitignore
